@@ -1,9 +1,41 @@
 .cell {
-  width: 50px;
-  height: 50px;
+  width: 30px;
+  height: 30px;
   border: 1px solid #ccc;
 }
 
-.cell.hovered {
-  background-color: lightblue;
+.mode-wrapper {
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.button {
+  margin: 0 10px;
+}
+
+.container {
+  padding: 20px;
+}
+
+.left {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
+
+.right {
+  padding: 20px;
+  min-width: 250px
+}
+
+.game-wrapper {
+  display: flex;
+}
+
+.list li {
+  font-size: 14px;
+  padding: 10px;
+  background-color: bisque;
+  border-radius: 5px;
+  margin: 3px 0;
 }

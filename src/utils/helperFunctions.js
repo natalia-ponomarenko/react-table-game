@@ -1,10 +1,13 @@
 const BASE_API = "https://60816d9073292b0017cdd833.mockapi.io/modes";
 
-export const fetchModes = (setModes) => {
-  fetch(BASE_API)
-    .then((response) => response.json())
-    .then((data) => setModes(data))
-    .catch((error) => {
-      console.error("Error fetching modes:", error);
-    });
+export const fetchModes = async () => {
+  try {
+    const response = await fetch(BASE_API);
+    if (!response.ok) {
+      throw new Error("Network response was not ok");
+    }
+    return response.json();
+  } catch (error) {
+    throw new Error(`Error fetching modes: ${error.message}`);
+  }
 };
