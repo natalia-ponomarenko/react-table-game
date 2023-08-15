@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
-import { Select } from "./Select";
-import { Button } from "./Button";
-import { Field } from "./Field";
-import { Display } from "./Display";
-import { fetchModes } from "./utils/helperFunctions";
+import React, { useState, useEffect, useCallback } from "react";
+import { Select } from "./components/Select/Select";
+import { Button } from "./components/Button/Button";
+import { Field } from "./components/Field/Field";
+import { Display } from "./components/Display/Display";
+import { fetchModes } from "./utils/fetchModes";
 import { Mode } from "./types/Mode";
 
 const App: React.FC = () => {
@@ -33,16 +33,16 @@ const App: React.FC = () => {
       setGameStarted(false);
     }
   }, [selectedMode]);
-  
-  const handleStart = () => {
+
+  const handleStart = useCallback(() => {
     if (selectedMode) {
       setGameStarted(true);
       //clean the result when clicking the start button
       setHoveredCells([]);
     }
-  };
+  }, [selectedMode]);
 
-  const handleCellHover = (cellInfo: string, isHovered: boolean) => {
+  const handleCellHover = useCallback((cellInfo: string, isHovered: boolean) => {
     if (isHovered) {
       setHoveredCells((prevHoveredCells) => [...prevHoveredCells, cellInfo]);
     } else {
@@ -50,7 +50,7 @@ const App: React.FC = () => {
         prevHoveredCells.filter((cell) => cell !== cellInfo)
       );
     }
-  };
+  }, [setHoveredCells]);
 
   return (
     <div className="container">
@@ -86,6 +86,6 @@ const App: React.FC = () => {
       </div>
     </div>
   );
-}
+};
 
 export default App;

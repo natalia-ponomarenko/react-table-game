@@ -1,6 +1,6 @@
 import React from "react";
-import { Mode } from "./types/Mode";
-import "./app.css";
+import { Mode } from "../../types/Mode";
+import "../../app.css";
 
 type Props = {
   modes: Mode[];

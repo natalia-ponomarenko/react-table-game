@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import "./app.css";
+import React, { useCallback, useState } from "react";
+import "../../app.css";
 
 type Props = {
   handleCellHover: (cellInfo: string, isHovered: boolean) => void;
@@ -14,10 +14,10 @@ export const Cell: React.FC<Props> = ({
 }) => {
   const [isHovered, setHovered] = useState(false);
 
-  const handleHover = () => {
+  const handleHover = useCallback(() => {
     setHovered(!isHovered);
     handleCellHover(`row: ${rowIndex}, col: ${columnIndex}`, !isHovered);
-  };
+  }, [setHovered, handleCellHover, rowIndex, columnIndex, isHovered]);
 
   const cellStyle = {
     background: isHovered ? "blue" : "white",
